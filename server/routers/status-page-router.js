@@ -99,6 +99,8 @@ router.get("/api/status-page/heartbeat/:slug", cache("1 minutes"), async (reques
 
             const uptimeCalculator = await UptimeCalculator.getUptimeCalculator(monitorID);
             uptimeList[`${monitorID}_24`] = uptimeCalculator.get24Hour().uptime;
+            uptimeList[`${monitorID}_720`] = uptimeCalculator.get30Day().uptime;
+            uptimeList[`${monitorID}_8760`] = uptimeCalculator.get1Year().uptime;
         }
 
         response.json({
